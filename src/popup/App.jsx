@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { RedirectChecker } from "./RedirectChecker";
 
 export const App = () => {
   const [url, setUrl] = useState("");
