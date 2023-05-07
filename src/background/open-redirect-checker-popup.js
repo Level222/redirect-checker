@@ -6,7 +6,7 @@ export const openRedirectCheckerPopup = async (url) => {
     url: chrome.runtime.getURL("./popup.html")
   });
 
-  const [tab] = await chrome.tabs.query({ windowId: window.id });
+  const [tab] = window.tabs;
   const targetTabId = tab.id;
 
   await waitTabLoading(targetTabId);
