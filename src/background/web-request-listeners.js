@@ -8,7 +8,7 @@ const requestPromiseListener = new PromiseExtensionListener(
 );
 
 export const getNextFetchRequestId = async (url) => {
-  const details = await requestPromiseListener.nextOccurs();
+  const [details] = await requestPromiseListener.nextOccurs();
 
   if (details.initiator === extensionUrlOrigin && details.url === url) {
     return details.requestId;
@@ -24,7 +24,7 @@ const redirectPromiseListener = new PromiseExtensionListener(
 );
 
 export const getNextRedirectDestination = async (requestId) => {
-  const details = await redirectPromiseListener.nextOccurs();
+  const [details] = await redirectPromiseListener.nextOccurs();
 
   if (details.requestId === requestId) {
     return details.redirectUrl;

@@ -5,9 +5,9 @@ export class PromiseExtensionListener {
     eventType.addListener(this.#eventHandler, ...options);
   }
 
-  #eventHandler = (event) => {
+  #eventHandler = (...args) => {
     for (const handler of this.#handlers) {
-      handler(event);
+      handler(args);
     }
     this.#handlers.clear();
   };
