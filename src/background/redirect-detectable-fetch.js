@@ -1,17 +1,21 @@
 import { getNextFetchRequestId, getNextRedirectDestination } from "./web-request-listeners";
+import { promiseAnyValue } from "./promise-any-value";
 
 export const redirectDetectableFetch = async (url) => {
-  const gettingRedirectDestination = getNextFetchRequestId(url).then(getNextRedirectDestination);
-  const response = await fetch(url);
+  const [key, promiseResult] = await promiseAnyValue(new Map([
+    ["gettingRedirectDestination", getNextFetchRequestId(url).then(getNextRedirectDestination)],
+    ["fetching", fetch(url)]
+  ]));
 
-  if (response.redirected) {
-    const redirectUrl = await gettingRedirectDestination;
+  if (key === "gettingRedirectDestination") {
+    const redirectUrl = promiseResult;
     return {
-      response, redirected: true, redirectUrl
+      redirected: true, redirectUrl
     };
   }
 
+  const response = promiseResult;
   return {
-    response, redirected: false
+    redirected: false, response
   };
 };
