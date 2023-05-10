@@ -7,7 +7,7 @@ const requestPromiseListener = new PromiseExtensionListener(
   { types: ["xmlhttprequest"], urls: ["<all_urls>"] }
 );
 
-export const getNextFetchRequestId = async (url) => {
+const getNextFetchRequestId = async (url) => {
   const [details] = await requestPromiseListener.nextOccurs();
 
   if (details.initiator === extensionUrlOrigin && details.url === url) {
@@ -23,7 +23,7 @@ const redirectPromiseListener = new PromiseExtensionListener(
   { types: ["xmlhttprequest"], urls: ["<all_urls>"] }
 );
 
-export const getNextRedirectDestination = async (requestId) => {
+const getNextRedirectDestination = async (requestId) => {
   const [details] = await redirectPromiseListener.nextOccurs();
 
   if (details.requestId === requestId) {
@@ -31,4 +31,10 @@ export const getNextRedirectDestination = async (requestId) => {
   }
 
   return await getNextRedirectDestination();
+};
+
+
+export const getNextFetchRedirectDestination = async (url) => {
+  const requestId = await getNextFetchRequestId(url);
+  return await getNextRedirectDestination(requestId);
 };
