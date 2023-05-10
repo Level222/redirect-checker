@@ -1,4 +1,4 @@
-import { PromiseExtensionListener } from "./promise-extension-listener";
+import { PromiseExtensionListener } from "@utils/promise-extension-listener";
 
 const extensionUrlOrigin = chrome.runtime.getURL("").replace(/\/$/, "");
 

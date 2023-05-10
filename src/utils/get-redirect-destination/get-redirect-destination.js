@@ -4,12 +4,12 @@ import { redirectDetectableFetch } from "./redirect-detectable-fetch";
 export const getRedirectDestination = async (url) => {
   const { response, redirected, redirectUrl } = await redirectDetectableFetch(url);
 
-  if (!response.ok) {
-    throw new Error(`${response.status} ${response.statusText}`);
-  }
-
   if (redirected) {
     return { redirected, redirectUrl };
+  }
+
+  if (!response.ok) {
+    throw new Error(`${response.status} ${response.statusText}`);
   }
 
   const responseDocStr = await response.text();
