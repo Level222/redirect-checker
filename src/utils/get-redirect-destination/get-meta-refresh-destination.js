@@ -1,7 +1,7 @@
 export const getMetaRefreshDestination = (doc) => {
   const metaElem = doc.querySelector("meta[http-equiv=refresh][content]");
   if (!metaElem) {
-    return false;
+    return null;
   }
 
   const match = metaElem.content.match(/^\d+;url=(.+)/is);

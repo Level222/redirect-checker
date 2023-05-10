@@ -5,7 +5,6 @@ const CopyPlugin = require("copy-webpack-plugin");
 
 module.exports = {
   entry: {
-    offscreen: "./src/offscreen/index.js",
     background: "./src/background/index.js",
     popup: "./src/popup/index.jsx"
   },
@@ -33,11 +32,6 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: "./src/offscreen/offscreen.html",
-      filename: "offscreen.html",
-      chunks: ["offscreen"]
-    }),
-    new HtmlWebpackPlugin({
       template: "./src/popup/popup.html",
       filename: "popup.html",
       chunks: ["popup"]
@@ -55,6 +49,9 @@ module.exports = {
     })
   ],
   resolve: {
+    alias: {
+      "@utils": path.resolve(__dirname, "src/utils")
+    },
     extensions: [".jsx", "..."]
   }
 };

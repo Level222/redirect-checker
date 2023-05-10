@@ -1,4 +1,3 @@
-import { getRedirectDestination } from "./get-redirect-destination";
 import { openRedirectCheckerPopup } from "./open-redirect-checker-popup";
 
 const MENU_ID = "check-redirection";
