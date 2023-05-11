@@ -22,4 +22,4 @@ export const getRedirectDestination = async (url) => {
   }
 
   return { redirected: false };
-}
+};

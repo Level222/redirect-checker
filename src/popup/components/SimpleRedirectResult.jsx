@@ -1,7 +1,7 @@
 export const SimpleRedirectResult = ({ from, to, isLoading }) => {
   const redirectMsg = (() => {
     if (isLoading) {
-      return "Loading..."
+      return "Loading...";
     }
 
     if (from === to) {
