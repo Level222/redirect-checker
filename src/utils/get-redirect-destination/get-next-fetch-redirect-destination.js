@@ -30,7 +30,7 @@ const getNextRedirectDestination = async (requestId) => {
     return details.redirectUrl;
   }
 
-  return await getNextRedirectDestination();
+  return await getNextRedirectDestination(requestId);
 };
 
 
