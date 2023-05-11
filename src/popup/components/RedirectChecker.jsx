@@ -8,8 +8,6 @@ export const RedirectChecker = ({ url }) => {
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
-  console.log(redirectDestinations)
-
   const setRedirectDestinationsAsync = async (urls, count) => {
     const MAX_REDIRECT_COUNT = 20;
     if (count > MAX_REDIRECT_COUNT) {
@@ -17,7 +15,7 @@ export const RedirectChecker = ({ url }) => {
       setIsLoading(false);
     }
 
-    setRedirectDestinations(urls);
+    setRedirectDestinations([...urls]);
 
     try {
       const { redirected, redirectUrl } = await getRedirectDestination(urls.at(-1));
